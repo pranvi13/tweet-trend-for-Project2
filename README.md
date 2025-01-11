@@ -1,4 +1,4 @@
-# Ttrend application
+# Ttrend application -fqts
 
 This is a small applicaiton which contains main and test folders.  
 Main contains application code.  
