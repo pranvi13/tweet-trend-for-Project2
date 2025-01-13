@@ -56,7 +56,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                    docker build -t ${ttrend}:${latest} .
+                    docker build -t ttrend:2.1.2 .
                     """
                 }
             }
