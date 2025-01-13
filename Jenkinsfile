@@ -7,8 +7,7 @@ pipeline {
     }
     environment {
         PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
-        ARTIFACTORY_REPO = 'fqts01-docker-local'
-        ARTIFACTORY_URL ='https://fqts01.jfrog.io/artifactory'
+        ARTIFACTORY_REPO = 'fqts01.jfrog.io/fqts01-docker-local'
         DOCKER_IMAGE_NAME = 'ttrend'
         DOCKER_TAG = '2.1.2'
         JFROG_REGISTRY = 'https://fqts01.jfrog.io'
@@ -75,7 +74,7 @@ pipeline {
                     echo $PASSWORD | docker login $JFROG_REGISTRY --username $USERNAME --password-stdin
                     echo '<--------------- docker login done --------------->' 
                     docker tag ${DOCKER_IMAGE_NAME}:${DOCKER_TAG} ${ARTIFACTORY_REPO}/${DOCKER_IMAGE_NAME}:${DOCKER_TAG}
-                    docker push ${ARTIFACTORY_URL}/${ARTIFACTORY_REPO}/${DOCKER_IMAGE_NAME}:${DOCKER_TAG}
+                    docker push ${ARTIFACTORY_REPO}/${DOCKER_IMAGE_NAME}:${DOCKER_TAG}
                     """
                     }
                 }
