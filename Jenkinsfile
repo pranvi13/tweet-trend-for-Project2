@@ -69,7 +69,7 @@ pipeline {
         stage('Publish Docker Image to Artifactory') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: ${JFROF_CREDENTIALS_ID}, variable: 'JFROG_TOKEN')]) {
+                    withCredentials([string(credentialsId: "${JFROF_CREDENTIALS_ID}", variable: 'JFROG_TOKEN')]) {
                     sh """
                     echo $JFROG_TOKEN | docker login $DOCKER_REGISTRY --username token --password-stdin
             
