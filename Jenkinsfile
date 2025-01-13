@@ -71,7 +71,7 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: "${JFROF_CREDENTIALS_ID}", 
                                                      usernameVariable: 'DOCKER_USER', 
-                                                     passwordVariable: 'DOCKER_PASSWORD')]) 
+                                                     passwordVariable: 'DOCKER_PASSWORD')]){
 													 
 													 
                     sh """
@@ -79,6 +79,7 @@ pipeline {
                     docker tag ${DOCKER_IMAGE_NAME}:${DOCKER_TAG} ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_TAG}
                     docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_TAG}
                     """
+                    }
                 }
             }
         }
