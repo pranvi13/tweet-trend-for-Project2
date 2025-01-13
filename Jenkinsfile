@@ -5,9 +5,9 @@ pipeline {
             label 'maven'
         }
     }
-environment {
+    environment {
     PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
-}
+    }
     stages {
         stage("build"){
             steps {
@@ -49,8 +49,17 @@ environment {
                      server.publishBuildInfo(buildInfo)
                      echo '<--------------- Jar Publish Ended --------------->'  
             
+                   }
+              }   
+           }
+           stage('Build Docker Image') {
+            steps {
+                script {
+                    sh """
+                    docker build -t ${ttrend}:${latest} .
+                    """
+                }
             }
-        }   
-    } 
+        }
     }
 }
