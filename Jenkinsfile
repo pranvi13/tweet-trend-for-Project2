@@ -11,8 +11,8 @@ pipeline {
         ARTIFACTORY_URL ='https://fqts01.jfrog.io/artifactory'
         DOCKER_IMAGE_NAME = 'ttrend'
         DOCKER_TAG = '2.1.2'
-        JFROF_REGISTRY = 'https://fqts01.jfrog.io'
-        JFROF_CREDENTIALS_ID = 'jfrog-creds'
+        JFROG_REGISTRY = 'https://fqts01.jfrog.io'
+        JFROG_CREDENTIALS_ID = 'jfrog-creds'
     }
     stages {
         stage("build"){
