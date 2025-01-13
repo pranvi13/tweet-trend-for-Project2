@@ -72,7 +72,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'jfrog-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh """
                     echo $PASSWORD | docker login $DOCKER_REGISTRY --username $USERNAME --password-stdin
-                    docker login ${DOCKER_REGISTRY} -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+                    echo '<--------------- docker login done --------------->' 
                     docker tag ${DOCKER_IMAGE_NAME}:${DOCKER_TAG} ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_TAG}
                     docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_TAG}
                     """
