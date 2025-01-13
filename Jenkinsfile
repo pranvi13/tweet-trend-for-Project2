@@ -6,7 +6,12 @@ pipeline {
         }
     }
     environment {
-    PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
+        PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
+        ARTIFACTORY_REPO = 'fqts01-docker-local'
+        DOCKER_IMAGE_NAME = 'ttrend'
+        DOCKER_TAG = '2.1.2'
+        DOCKER_REGISTRY = 'https://fqts01.jfrog.io'
+        ARTIFACTORY_CREDENTIALS = credentials('jfrog-creds')
     }
     stages {
         stage("build"){
@@ -56,7 +61,23 @@ pipeline {
             steps {
                 script {
                     sh """
-                    docker build -t ttrend:2.1.2 .
+                    docker build -t ${DOCKER_IMAGE_NAME}:${DOCKER_TAG} .
+                    """
+                }
+            }
+        }
+        stage('Publish to Artifactory') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: "${DOCKER_CREDENTIALS_ID}", 
+                                                     usernameVariable: 'DOCKER_USER', 
+                                                     passwordVariable: 'DOCKER_PASSWORD')]) 
+													 
+													 
+                    sh """
+                    docker login ${DOCKER_REGISTRY} -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+                    docker tag ${DOCKER_IMAGE_NAME}:${DOCKER_TAG} ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_TAG}
+                    docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_TAG}
                     """
                 }
             }
