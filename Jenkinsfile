@@ -11,7 +11,7 @@ pipeline {
         DOCKER_IMAGE_NAME = 'ttrend'
         DOCKER_TAG = '2.1.2'
         DOCKER_REGISTRY = 'https://fqts01.jfrog.io'
-        ARTIFACTORY_CREDENTIALS = credentials('jfrog-creds')
+        JFROF_CREDENTIALS_ID = credentials('jfrog-creds')
     }
     stages {
         stage("build"){
@@ -66,10 +66,10 @@ pipeline {
                 }
             }
         }
-        stage('Publish to Artifactory') {
+        stage('Publish Docker Image to Artifactory') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: "${DOCKER_CREDENTIALS_ID}", 
+                    withCredentials([usernamePassword(credentialsId: "${JFROF_CREDENTIALS_ID}", 
                                                      usernameVariable: 'DOCKER_USER', 
                                                      passwordVariable: 'DOCKER_PASSWORD')]) 
 													 
