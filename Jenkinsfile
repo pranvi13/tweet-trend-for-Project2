@@ -9,7 +9,7 @@ pipeline {
         PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
         ARTIFACTORY_REPO = 'fqts01.jfrog.io/fqts01-docker-local'
         DOCKER_IMAGE_NAME = 'ttrend'
-        DOCKER_TAG = '2.1.2'
+        DOCKER_TAG = '2.1.3'
         JFROG_REGISTRY = 'https://fqts01.jfrog.io'
         JFROG_CREDENTIALS_ID = 'jfrog-creds'
     }
