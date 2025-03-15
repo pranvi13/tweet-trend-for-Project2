@@ -15,6 +15,17 @@ pipeline {
                 sh 'mvn clean deploy'
                 echo "build completed"
             }
+        }    
+            stage('SonarQube analysis') {
+            environment {
+            scannerHome = tool 'fqts-sonar-scanner'
+                   }
+            steps{
+                withSonarQubeEnv('fqts-sonar-server') { 
+                sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+        
         }
     }
 }
