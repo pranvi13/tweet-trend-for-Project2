@@ -37,15 +37,14 @@ pipeline {
                     def uploadSpec = """{
                           "files": [
                             {
-                              "pattern": "jarstaging/(*)
-",
+                              "pattern": "jarstaging/(*)",
                               "target": "fqts-pranvi-repo-libs-release-local",
                               "flat": "false",
                               "props" : "${properties}",
                               "exclusions": [ "*.sha1", "*.md5"]
                             }
                         ]
-                     }"""
+                    }"""
                     def buildInfo = server.upload(uploadSpec)
                     buildInfo.env.collect()
                     server.publishBuildInfo(buildInfo)
