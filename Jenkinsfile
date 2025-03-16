@@ -1,3 +1,4 @@
+def registry = 'https://fqtspranvi.jfrog.io/'
 pipeline {
     agent {
         node {
@@ -31,14 +32,14 @@ pipeline {
           steps {
             script {
                     echo '<--------------- Jar Publish Started --------------->'
-                    def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"jfrog-creds"
+                    def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"jgrog-creds"
                     def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
                     def uploadSpec = """{
                           "files": [
                             {
                               "pattern": "jarstaging/(*)
 ",
-                              "target": "fqts01-libs-release-local/{1}",
+                              "target": "fqts-pranvi-repo-libs-release-local",
                               "flat": "false",
                               "props" : "${properties}",
                               "exclusions": [ "*.sha1", "*.md5"]
