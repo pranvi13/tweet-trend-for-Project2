@@ -38,7 +38,7 @@ pipeline {
                           "files": [
                             {
                               "pattern": "jarstaging/(*)",
-                              "target": "fqts-pranvi-repo-libs-release-local",
+                              "target": "fqts-pranvi-repo-libs-release-local/{1}",
                               "flat": "false",
                               "props" : "${properties}",
                               "exclusions": [ "*.sha1", "*.md5"]
