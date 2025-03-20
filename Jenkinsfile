@@ -8,7 +8,7 @@ pipeline {
     environment {
         PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
         DOCKER_TAG = '2.1.3'
-        DOCKER_IMAGE_NAME = 'ttrend-img'
+        DOCKER_IMAGE_NAME = 'ttrend-img'
     }
     stages {
         stage("build") {
