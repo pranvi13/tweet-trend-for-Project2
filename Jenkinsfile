@@ -7,7 +7,7 @@ pipeline {
     }
     environment {
         PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
-        DOCKER_TAG = '2.1.3'
+        DOCKER_TAG = '2.1.4'
         DOCKER_IMAGE_NAME = 'ttrend-img'
         JFROG_REGISTRY = 'https://fqtspranvi.jfrog.io/'
         ARTIFACTORY_REPO = 'fqtspranvi.jfrog.io/fqts-docker-pranvi-docker'
